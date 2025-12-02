@@ -94,7 +94,7 @@ function finish(winner) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function reset().{
+function reset() {
     board = Array(9).fill(null);
     squares.forEach(s => {
         s.textContent = "";
