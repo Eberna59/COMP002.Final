@@ -73,3 +73,39 @@ function move(i) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function Highlight(line) {
+    for (let i of line) squares[i].classList.add("winner");
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function finish(winner) {
+    active = false;
+    if (winner === "X") {
+        scoreX++;
+        localStorage.setItem("scoreX", scoreX);
+        scoreXEl.textContent = scoreX;
+    } else{
+        scoreO++;
+        localStorage.setItem("scoreO", scoreO);
+        scoreOEl.textContent = scoreO;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function reset().{
+    board = Array(9).fill(null);
+    squares.forEach(s => {
+        s.textContent = "";
+        s.classList.remove("winner");
+    });
+    player = "X";
+    active = true;
+    updateTurn();
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+squares.forEach((sq, i) => sq.addEventListener("click", () => move(i)));
+againBtn.addEventListener("click", reset);
