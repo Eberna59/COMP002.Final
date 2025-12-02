@@ -1,8 +1,8 @@
 const squares = [...document.querySelectorAll(".game-square")];
 const turnEl = document.getElementById("turn");
 const againBtn = document.getElementById("button-play-again");
-const scoreXEl = document.getElementById("scoreboard-X");
-const scoreOEl = document.getElementById("scoreboard-O");
+const scoreXEl = document.getElementById("scoreboard-x");
+const scoreOEl = document.getElementById("scoreboard-o");
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -28,7 +28,7 @@ const WINS = [
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function updateTurn() {
-    turnEl.textContent = `current Turn: ${player}`;
+    turnEl.textContent = `Current Turn: ${player}`;
 }
 updateTurn();
 
@@ -108,4 +108,4 @@ function reset() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 squares.forEach((sq, i) => sq.addEventListener("click", () => move(i)));
-againBtn.addEventListener("click", reset);
+againBtn.addEventListener("click", reset); 
