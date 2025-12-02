@@ -33,3 +33,43 @@ function updateTurn() {
 updateTurn();
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function getResult() {
+    for (let line of WINS) {
+        let [a, b, c] = line;
+        if (board[a] && board[a] === board[b] && board[b] === board[c]) {
+            return { winner: board[a], line}
+        }
+    }
+    if (board.every(s=> s !== null)) return { tie: true};
+    return null;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function move(i) {
+    if (!active || board[i]) return;
+    
+    board[i] = player;
+    squares[i].textContent = player;
+
+    let result = getResult();
+
+    if (result?.winner) {
+        turnEl.textContent = `${result.winner} wins`;
+        Highlight(result.line);
+        finish(result.winner);
+        return;
+    }
+
+    if (result?.tie) {
+        turnEl.textContent = "Its a tie";
+        active = false;
+        return;
+    }
+
+    player = player === "X" ? "O" : "X";
+    updateTurn();
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
